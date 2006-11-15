@@ -11,6 +11,7 @@
             string inputUncorJetsLabel = "iterativeCone5CaloJets"
             string inputCorJetsLabel   = "corJetIcone5"
 	    double jetPTthreshold      = 20.0
+	    double jetEMfracLimit      = 0.9
       }
 
       module corMetType1Mcone5 = Type1MET
@@ -20,6 +21,7 @@
             string inputUncorJetsLabel = "midPointCone5CaloJets"
             string inputCorJetsLabel   = "corJetMcone5"
 	    double jetPTthreshold      = 20.0
+	    double jetEMfracLimit      = 0.9
       }
 
       module corMetType1Mcone7 = Type1MET
@@ -29,6 +31,7 @@
             string inputUncorJetsLabel = "midPointCone7CaloJets"
             string inputCorJetsLabel   = "corJetMcone7"
 	    double jetPTthreshold      = 20.0
+	    double jetEMfracLimit      = 0.9
       }
 
       sequence MetType1Corrections = {  corMetType1Icone5, corMetType1Mcone5, corMetType1Mcone7}
