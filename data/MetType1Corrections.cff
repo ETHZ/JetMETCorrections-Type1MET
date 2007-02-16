@@ -8,8 +8,8 @@
       {
             string metType = "CaloMET"
             string inputUncorMetLabel  = "met"
-            string inputUncorJetsLabel = "iterativeCone5CaloJets"
-            string inputCorJetsLabel   = "corJetIcone5"
+            string inputUncorJetsLabel = "iterativeCone5CaloJet"
+            string inputCorJetsLabel   = "MCJetCorJetIcone5"
 	    double jetPTthreshold      = 20.0
 	    double jetEMfracLimit      = 0.9
       }
@@ -18,8 +18,8 @@
       {
             string metType = "CaloMET"
             string inputUncorMetLabel  = "met"
-            string inputUncorJetsLabel = "midPointCone5CaloJets"
-            string inputCorJetsLabel   = "corJetMcone5"
+            string inputUncorJetsLabel = "midPointCone5CaloJet"
+            string inputCorJetsLabel   = "MCJetCorJetMcone5"
 	    double jetPTthreshold      = 20.0
 	    double jetEMfracLimit      = 0.9
       }
@@ -28,8 +28,8 @@
       {
             string metType = "CaloMET"
             string inputUncorMetLabel  = "met"
-            string inputUncorJetsLabel = "midPointCone7CaloJets"
-            string inputCorJetsLabel   = "corJetMcone7"
+            string inputUncorJetsLabel = "midPointCone7CaloJet"
+            string inputCorJetsLabel   = "MCJetCorJetMcone7"
 	    double jetPTthreshold      = 20.0
 	    double jetEMfracLimit      = 0.9
       }
