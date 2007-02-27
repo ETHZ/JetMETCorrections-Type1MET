@@ -8,7 +8,7 @@
       {
             string metType = "CaloMET"
             string inputUncorMetLabel  = "met"
-            string inputUncorJetsLabel = "iterativeCone5CaloJet"
+            string inputUncorJetsLabel = "iterativeCone5CaloJets"
             string corrector           = "MCJetCorrectorIcone5"
 	    double jetPTthreshold      = 20.0
 	    double jetEMfracLimit      = 0.9
@@ -18,7 +18,7 @@
       {
             string metType = "CaloMET"
             string inputUncorMetLabel  = "met"
-            string inputUncorJetsLabel = "midPointCone5CaloJet"
+            string inputUncorJetsLabel = "midPointCone5CaloJets"
             string corrector           = "MCJetCorrectorMcone5"
 	    double jetPTthreshold      = 20.0
 	    double jetEMfracLimit      = 0.9
@@ -28,7 +28,7 @@
       {
             string metType = "CaloMET"
             string inputUncorMetLabel  = "met"
-            string inputUncorJetsLabel = "midPointCone7CaloJet"
+            string inputUncorJetsLabel = "midPointCone7CaloJets"
             string corrector           = "MCJetCorrectorMcone7"
 	    double jetPTthreshold      = 20.0
 	    double jetEMfracLimit      = 0.9
