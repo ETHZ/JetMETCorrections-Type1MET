@@ -4,36 +4,17 @@
 #
 # Met corrections for global muons
 
-     include "Geometry/CMSCommonData/data/cmsSimIdealGeometryXML.cfi"
-     include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
+     
+     module corMetGlobalMuons = corMetMuons from "JetMETCorrections/Type1MET/data/corMetMuons.cfi"
 
-     include "Geometry/CaloEventSetup/data/CaloGeometry.cfi"
-     include "Geometry/CaloEventSetup/data/CaloTopology.cfi"
+     #enable calo tower association only
+     # association to hits would fail in AOD
+     replace corMetGlobalMuons.TrackAssociatorParameters.useEcal = false      # RecoHits
+     replace corMetGlobalMuons.TrackAssociatorParameters.useHcal = false     # RecoHits
+     replace corMetGlobalMuons.TrackAssociatorParameters.useHO = false        # RecoHits
+     replace corMetGlobalMuons.TrackAssociatorParameters.useCalo = true     # CaloTowers
+     replace corMetGlobalMuons.TrackAssociatorParameters.useMuon = false      # RecoHits
 
-     include "Geometry/DTGeometry/data/dtGeometry.cfi"
-     include "Geometry/RPCGeometry/data/rpcGeometry.cfi"
-     include "Geometry/CSCGeometry/data/cscGeometry.cfi"
-     include "Geometry/CommonDetUnit/data/bareGlobalTrackingGeometry.cfi"
-     include "Geometry/MuonNumbering/data/muonNumberingInitialization.cfi"
-
-     module corMetGlobalMuons = MuonMET
-      {
-            include "TrackingTools/TrackAssociator/data/default.cfi"
-
-            string metType             = "CaloMET"
-            string inputUncorMetLabel  = "met"
-            string inputMuonsLabel     = "muons"
-	    double muonPtMin           = 10.0
-	    double muonEtaRange        = 2.5
-	    double muonTrackD0Max      = 999.0
-	    double muonTrackDzMax      = 999.0
-	    int32  muonNHitsMin        = 5
-	    double muonDPtMax          = 0.5
-	    double muonChiSqMax        = 1000.0
-            bool   muonDepositCor      = true
-      }
-
-     replace corMetGlobalMuons.TrackAssociatorParameters.useCalo    = true
      replace corMetGlobalMuons.TrackAssociatorParameters.truthMatch = false
 
      sequence MetMuonCorrections = {  corMetGlobalMuons }
