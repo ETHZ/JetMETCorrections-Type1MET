@@ -15,10 +15,11 @@
      include "Geometry/CSCGeometry/data/cscGeometry.cfi"
      include "Geometry/CommonDetUnit/data/bareGlobalTrackingGeometry.cfi"
      include "Geometry/MuonNumbering/data/muonNumberingInitialization.cfi"
+     include "TrackingTools/TrackAssociator/data/default.cfi"
 
      module corMetMuons = MuonMET
       {
-            include "TrackingTools/TrackAssociator/data/default.cfi"
+            using TrackAssociatorParameterBlock
 
             string metType             = "CaloMET"
             string inputUncorMetLabel  = "met"
