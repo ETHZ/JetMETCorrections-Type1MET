@@ -35,7 +35,7 @@
 #include "Geometry/Records/interface/IdealGeometryRecord.h"
 #include "MagneticField/Engine/interface/MagneticField.h"
 #include "MagneticField/Records/interface/IdealMagneticFieldRecord.h"
-
+#include "FWCore/Framework/interface/MakerMacros.h"
 
 //using namespace std;
 
@@ -105,6 +105,6 @@ namespace cms
 	iEvent.put( output );                                        //Put output into Event
       }
   }
-
+  DEFINE_FWK_MODULE(MuonMET);
 }//end namespace cms
 
