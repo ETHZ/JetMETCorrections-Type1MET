@@ -45,9 +45,9 @@ namespace cms
   MuonMET::MuonMET( const edm::ParameterSet& iConfig ) : alg_() 
   {
     metType            = iConfig.getParameter<std::string>("metType");
-    
-    inputUncorMetLabel = iConfig.getParameter<std::string>("inputUncorMetLabel");
-    inputMuonsLabel    = iConfig.getParameter<std::string>("inputMuonsLabel");
+   
+    inputUncorMetLabel = iConfig.getParameter<edm::InputTag>("inputUncorMetLabel");
+    inputMuonsLabel    = iConfig.getParameter<edm::InputTag>("inputMuonsLabel");
     muonPtMin      = iConfig.getParameter<double>("muonPtMin");
     muonEtaRange   = iConfig.getParameter<double>("muonEtaRange");
     muonTrackD0Max = iConfig.getParameter<double>("muonTrackD0Max");
