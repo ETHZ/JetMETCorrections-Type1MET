@@ -21,15 +21,16 @@
             using TrackAssociatorParameterBlock
 
             string metType             = "CaloMET"
-            string inputUncorMetLabel  = "met"
-            string inputMuonsLabel     = "muons"
-	    double muonPtMin           = 10.0
-	    double muonEtaRange        = 2.5
-	    double muonTrackD0Max      = 999.0
-	    double muonTrackDzMax      = 999.0
-	    int32  muonNHitsMin        = 5
-	    double muonDPtMax          = 0.5
-	    double muonChiSqMax        = 1000.0
+            InputTag inputUncorMetLabel= met
+            InputTag inputMuonsLabel   = muons
+            double muonPtMin           = 10.0
+            double muonEtaRange        = 2.5
+            double muonTrackD0Max      = 999.0
+            double muonTrackDzMax      = 999.0
+            int32  muonNHitsMin        = 5
+            double muonDPtMax          = 0.5
+            double muonChiSqMax        = 1000.0
             bool   muonDepositCor      = true
+
       }
 
