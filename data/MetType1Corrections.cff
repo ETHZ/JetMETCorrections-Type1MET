@@ -34,46 +34,4 @@
 	    double jetEMfracLimit      = 0.9
       }
 
-
-      module L3corMetType1Icone5 = Type1MET
-      {
-            string metType = "CaloMET"
-            string inputUncorMetLabel  = "met"
-            string inputUncorJetsLabel = "iterativeCone5CaloJets"
-            string corrector           = "L3AbsoluteJetCorrectorIcone5"
-            double jetPTthreshold      = 20.0
-            double jetEMfracLimit      = 0.9
-      }
-
-      module L3corMetType1Mcone5 = Type1MET
-      {
-            string metType = "CaloMET"
-            string inputUncorMetLabel  = "met"
-            string inputUncorJetsLabel = "midPointCone5CaloJets"
-            string corrector           = "L3AbsoluteJetCorrectorMcone5"
-            double jetPTthreshold      = 20.0
-            double jetEMfracLimit      = 0.9
-      }
-
-      module L2corMetType1Icone5 = Type1MET
-      {
-            string metType = "CaloMET"
-            string inputUncorMetLabel  = "met"
-            string inputUncorJetsLabel = "iterativeCone5CaloJets"
-            string corrector           = "L2RelativeJetCorrectorIcone5"
-            double jetPTthreshold      = 20.0
-            double jetEMfracLimit      = 0.9
-      }
-
-      module L2corMetType1Mcone5 = Type1MET
-      {
-            string metType = "CaloMET"
-            string inputUncorMetLabel  = "met"
-            string inputUncorJetsLabel = "midPointCone5CaloJets"
-            string corrector           = "L2RelativeJetCorrectorMcone5"
-            double jetPTthreshold      = 20.0
-            double jetEMfracLimit      = 0.9
-      }
-
-
-      sequence MetType1Corrections = {  corMetType1Icone5, corMetType1Mcone5, corMetType1Mcone7, L3corMetType1Icone5, L3corMetType1Mcone5, L2corMetType1Icone5, L2corMetType1Mcone5}
+      sequence MetType1Corrections = {  corMetType1Icone5, corMetType1Mcone5, corMetType1Mcone7}
