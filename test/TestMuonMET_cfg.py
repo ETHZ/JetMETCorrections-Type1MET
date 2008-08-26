@@ -1,26 +1,34 @@
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process("R")
-# initialize MessageLogger
-process.load("FWCore.MessageLogger.MessageLogger_cfi")
-
 # Magnetic field now needs to be in the high-level py
 process.load("Configuration.StandardSequences.MagneticField_cff")
-
+process.load("Configuration.StandardSequences.Geometry_cff")
+process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
+process.load("Geometry.CommonDetUnit.globalTrackingGeometry_cfi")
+process.load("Geometry.CommonDetUnit.bareGlobalTrackingGeometry_cfi")
+process.GlobalTag.globaltag="IDEAL_V5::All"
 process.load("JetMETCorrections.Type1MET.MetMuonCorrections_cff")
+process.load("TrackingTools.TrackAssociator.default_cfi")
+process.load("TrackingTools.TrackAssociator.DetIdAssociatorESProducer_cff")
 
 process.maxEvents = cms.untracked.PSet(
     input = cms.untracked.int32(10)
 )
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:jet15_20.root')
+    fileNames = cms.untracked.vstring('file:0AC27F01-D260-DD11-8207-0018F3D096EE.root')
 )
+
+#process.goodMuonsforMETCorrection = cms.EDFilter("MuonSelector",
+#    src = cms.InputTag("muons"),
+#    cut = cms.string('isGlobalMuon=1 & pt > 10.0 & abs(eta)<2.5 & innerTrack.numberOfValidHits>5 & combinedMuon.qoverpError< 0.5')
+#)
 
 process.RECO = cms.OutputModule("PoolOutputModule",
     fileName = cms.untracked.string('muonmet.root')
 )
 
+##process.p4 = cms.Path(process.goodMuonsforMETCorrection*process.MetMuonCorrections)
 process.p4 = cms.Path(process.MetMuonCorrections)
 process.outpath = cms.EndPath(process.RECO)
-process.PoolSource.fileNames = ['file:/scratch3/terashi/cmssw-160/fevt_RelVal145Z_MM_2E273E2F-685B-DC11-996E-000423D98F98.root']
 
