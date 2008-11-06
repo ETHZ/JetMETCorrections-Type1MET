@@ -1,26 +1,28 @@
 # File: TauMetCorrections.cff
 # Authors: C. N. Nguyen , A. Gurrola
-# Date: 10.22.2007
 #
 # Met corrections for PFTaus
 
-module PFJetsCaloJetsDeltaMet = TauMET
+module tauMetCorr = TauMET
 {
-   string InputPFJetsLabel   = "iterativeCone5PFJets"
+   string InputTausLabel   = "pfRecoTauProducer"
+   string tauType   = "pfTau"
    string InputCaloJetsLabel   = "iterativeCone5CaloJets"
+   double jetPTthreshold = 20.0
+   double jetEMfracLimit = 0.9
    string correctorLabel = "MCJetCorrectorIcone5"
-   bool UseCorrectedJets = false
+   string InputMETLabel = "corMetType1Icone5"
+   string metType = "recoCaloMET"
    double JetMatchDeltaR = 0.2
+   double TauMinEt = 15.0
+   double TauEtaMax = 2.5
+   bool UseSeedTrack = true
+   double seedTrackPt = 6.0
+   bool UseTrackIsolation = true
+   double trackIsolationMinPt = 1.0
+   bool UseECALIsolation = true
+   double gammaIsolationMinPt = 1.5
+   bool UseProngStructure = false
 }
 
-
-module PFJetsCorrCaloJetsDeltaMet = TauMET
-{
-   string InputPFJetsLabel   = "iterativeCone5PFJets"
-   string InputCaloJetsLabel   = "iterativeCone5CaloJets"
-   string correctorLabel = "MCJetCorrectorIcone5"
-   bool UseCorrectedJets = true
-   double JetMatchDeltaR = 0.2
-}
-
-sequence MetTauCorrections = {  PFJetsCaloJetsDeltaMet, PFJetsCorrCaloJetsDeltaMet}
+sequence MetTauCorrections = { tauMetCorr }
