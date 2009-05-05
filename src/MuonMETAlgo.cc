@@ -71,9 +71,6 @@ template <class T> void MuonMETAlgo::MuonMETAlgo_run(const edm::View<reco::Muon>
     float deltax = muCorrData.corrX();      
     float deltay = muCorrData.corrY();      
     
-    std::cout << "Flag, delX, delY: (" << flag << ", " << deltax << ", " << deltay << ")" << std::endl;
-    
-        
     //new
     LorentzVector mup4;
     if (flag == 0) //this muon is not used to correct the MET
