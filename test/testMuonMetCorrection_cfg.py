@@ -9,18 +9,18 @@ process.load("Configuration.StandardSequences.Geometry_cff")
 process.load("Configuration.StandardSequences.MagneticField_cff")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 process.load("TrackingTools.TrackAssociator.DetIdAssociatorESProducer_cff")
-
+process.GlobalTag.globaltag = "MC_3XY_V15::All"
 
 process.load("JetMETCorrections.Type1MET.MuonMETValueMapProducer_cff")
 process.load("JetMETCorrections.Type1MET.MetMuonCorrections_cff")
 
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 
 process.source = cms.Source("PoolSource",
     # replace 'myfile.root' with the source file you want to use
     fileNames = cms.untracked.vstring(
-    '/store/relval/CMSSW_3_1_0_pre4/RelValZMM/GEN-SIM-RECO/STARTUP_30X_v1/0003/5C786CEA-D415-DE11-9F1D-000423D6B358.root')
+    '/store/relval/CMSSW_3_4_2/RelValProdTTbar/GEN-SIM-RECO/MC_3XY_V15-v1/0010/AE53FEB0-5F13-DF11-956B-001A928116C0.root')
 )
 
 process.out = cms.OutputModule("PoolOutputModule",
