@@ -13,7 +13,7 @@ Implementation:
 //
 // Original Author:  Puneeth Kalavase
 //         Created:  Sun Mar 15 11:33:20 CDT 2009
-// $Id: MuonMETValueMapProducer.cc,v 1.3 2009/12/01 08:22:01 kalavase Exp $
+// $Id: MuonMETValueMapProducer.cc,v 1.2.4.1 2010/02/04 19:01:23 fgolf Exp $
 //
 //
 
@@ -55,8 +55,7 @@ namespace cms {
     maxNormChi2_ = iConfig.getParameter<double>("maxNormChi2" );
     maxd0_       = iConfig.getParameter<double>("maxd0"       );
     minnHits_    = iConfig.getParameter<int>   ("minnHits"    );
-    //qOverPErr_   = iConfig.getParameter<double>("qOverPErr"   );
-    //delPtOverPt_ = iConfig.getParameter<double>("delPtOverPt" );
+    minnValidStaHits_ = iConfig.getParameter<int>   ("minnValidStaHits"    );
   
     beamSpotInputTag_            = iConfig.getParameter<InputTag>("beamSpotInputTag"         );
     muonInputTag_   = iConfig.getParameter<InputTag>("muonInputTag");
@@ -167,7 +166,7 @@ namespace cms {
 	continue;
       }
 
-      //if we have gotten here, we only have global muons
+      //if we have gotten here, we only have muons which are both global and tracker
         
       TrackRef globTk = mu->globalTrack();
       TrackRef siTk   = mu->innerTrack();
@@ -188,7 +187,10 @@ namespace cms {
         v_muCorrData.push_back(muMETCorrData);
 	continue;
       }
-
+      if(globTk->hitPattern().numberOfValidMuonHits() < minnValidStaHits_) {
+        v_muCorrData.push_back(muMETCorrData);
+        continue;
+      }  
       //if we've gotten here. the global muon has passed all the tests
       v_muCorrData.push_back(MuonMETCorrectionData(MuonMETCorrectionData::MuonCandidateValuesUsed, deltax, deltay));
     }

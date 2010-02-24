@@ -16,7 +16,8 @@ muonMETValueMapProducer = cms.EDProducer("MuonMETValueMapProducer",
      maxEta       = cms.double(2.4),    #max global |Eta| is 2.5
      maxNormChi2  = cms.double(10.0),   #max global chi2/ndof
      maxd0        = cms.double(0.2),    #max global d0
-     minnHits     = cms.int32(11)      #minimum # of si hits
+     minnHits     = cms.int32(11),      #minimum # of si hits
+     minnValidStaHits  = cms.int32(1)     #minimum # of valid hits in the muon system used in the global muon fit
 )
 muonMETValueMapProducer.TrackAssociatorParameters.useEcal = False
 muonMETValueMapProducer.TrackAssociatorParameters.useHcal = False

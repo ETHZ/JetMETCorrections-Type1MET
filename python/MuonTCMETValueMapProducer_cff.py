@@ -21,5 +21,6 @@ muonTCMETValueMapProducer = cms.EDProducer("MuonTCMETValueMapProducer",
      global_muon      = cms.bool(True),
      tracker_muon     = cms.bool(True),
      deltaR_muon      = cms.double(0.05),
-     useCaloMuons     = cms.bool(False)
+     useCaloMuons     = cms.bool(False),
+     muonMinValidStaHits = cms.int32(1)
 )
