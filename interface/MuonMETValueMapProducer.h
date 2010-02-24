@@ -51,6 +51,7 @@ class MuonMETValueMapProducer : public edm::EDProducer {
       int minnHits_;
       TrackDetectorAssociator   trackAssociator_;
       TrackAssociatorParameters trackAssociatorParameters_;
+      int minnValidStaHits_;
   };
 }
 #endif

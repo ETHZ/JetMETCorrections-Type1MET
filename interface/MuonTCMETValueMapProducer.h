@@ -71,7 +71,8 @@ class MuonTCMETValueMapProducer : public edm::EDProducer {
       double  maxPtErr_;
       std::vector<int> trkQuality_;
       std::vector<int> trkAlgos_;
-
+      
+      int     muonMinValidStaHits_;
       double  muonpt_;
       double  muoneta_;
       double  muonchi2_;
