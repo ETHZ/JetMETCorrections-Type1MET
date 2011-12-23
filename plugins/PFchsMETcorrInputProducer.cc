@@ -7,7 +7,7 @@
 PFchsMETcorrInputProducer::PFchsMETcorrInputProducer(const edm::ParameterSet& cfg)
   : moduleLabel_(cfg.getParameter<std::string>("@module_label")),
     src_(cfg.getParameter<edm::InputTag>("src")),
-    goodVtxNdof_(cfg.getParameter<uint>("goodVtxNdof")),
+    goodVtxNdof_(cfg.getParameter<unsigned int>("goodVtxNdof")),
     goodVtxZ_(cfg.getParameter<double>("goodVtxZ"))
 {
   produces<CorrMETData>("type0");
@@ -28,9 +28,9 @@ void PFchsMETcorrInputProducer::produce(edm::Event& evt, const edm::EventSetup& 
   for (unsigned i = 1; i < recVtxs->size(); ++i)
     {
       const reco::Vertex& v = recVtxs->at(i);
-      std::cout << v.z() << std::endl;
-      if (v.isFake() && v.ndof() >= goodVtxNdof_ && fabs(v.z()) <= goodVtxZ_) continue;
-      std::cout << v.z() << std::endl;
+      if (v.isFake()) continue;
+      if (v.ndof() < goodVtxNdof_) continue;
+      if (fabs(v.z()) > goodVtxZ_) continue;
 
       for (reco::Vertex::trackRef_iterator track = v.tracks_begin(); track != v.tracks_end(); ++track)
 	{
