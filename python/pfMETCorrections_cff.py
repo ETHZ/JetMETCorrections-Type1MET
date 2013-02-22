@@ -7,29 +7,10 @@ from JetMETCorrections.Configuration.JetCorrectionServices_cff import *
 # select PFCandidates ("unclustered energy") not within jets
 # for Type 2 MET correction
 from CommonTools.ParticleFlow.TopProjectors.pfNoJet_cfi import pfNoJet
-# the new TopProjectors now work with Ptrs
-# a conversion is needed if objects are not available
-# add them upfront of the sequence
-ak5PFJetsPtrs = cms.EDProducer("PFJetFwdPtrProducer",
-   src = cms.InputTag("ak5PFJets")
+pfCandsNotInJet = pfNoJet.clone(
+    topCollection = cms.InputTag('ak5PFJets'),
+    bottomCollection = cms.InputTag('particleFlow')
 )
-# this one is needed only if the input file doesn't have it
-# solved automatically with unscheduled execution
-from RecoParticleFlow.PFProducer.pfLinker_cff import particleFlowPtrs
-# particleFlowPtrs = cms.EDProducer("PFCandidateFwdPtrProducer",
-#    src = cms.InputTag("particleFlow")
-# )
-# FIXME: THIS IS A WASTE, BUT NOT CLEAR HOW TO FIX IT CLEANLY: the module
-# downstream operates with View<reco::Candidate>, I wish one could read
-# it from std::vector<PFCandidateFwdPtr> directly
-pfCandsNotInJetPtrs = pfNoJet.clone(
-    topCollection = cms.InputTag('ak5PFJetsPtrs'),
-    bottomCollection = cms.InputTag('particleFlowPtrs')
-)
-pfCandsNotInJet = cms.EDProducer("PFCandidateFromFwdPtrProducer",
-    src = cms.InputTag("pfCandsNotInJetPtrs")
-)
-
 #--------------------------------------------------------------------------------
 
 #--------------------------------------------------------------------------------
@@ -41,7 +22,7 @@ pfJetMETcorr = cms.EDProducer("PFJetMETcorrInputProducer",
     jetCorrEtaMax = cms.double(9.9),
     type1JetPtThreshold = cms.double(10.0),
     type2ResidualCorrLabel = cms.string(""),
-    type2ResidualCorrEtaMax = cms.double(9.9),                        
+    type2ResidualCorrEtaMax = cms.double(9.9),
     skipEM = cms.bool(True),
     skipEMfractionThreshold = cms.double(0.90),
     skipMuons = cms.bool(True),
@@ -55,7 +36,7 @@ pfCandMETcorr = cms.EDProducer("PFCandMETcorrInputProducer",
     src = cms.InputTag('pfCandsNotInJet'),
     residualCorrLabel = cms.string(""),
     residualCorrEtaMax = cms.double(9.9),
-    residualCorrOffset = cms.double(0.)
+    residualCorrOffset = cms.double(0.)                         
 )   
 #--------------------------------------------------------------------------------
 
@@ -111,10 +92,7 @@ pfType1p2CorrectedMet = cms.EDProducer("CorrectedPFMETProducer",
 #--------------------------------------------------------------------------------
 # define sequence to run all modules
 producePFMETCorrections = cms.Sequence(
-    ak5PFJetsPtrs
-   * particleFlowPtrs 
-   * pfCandsNotInJetPtrs
-   * pfCandsNotInJet
+    pfCandsNotInJet
    * pfJetMETcorr
    * pfCandMETcorr
    * pfchsMETcorr
